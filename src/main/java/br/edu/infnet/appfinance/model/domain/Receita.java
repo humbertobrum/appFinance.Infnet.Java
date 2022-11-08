@@ -9,6 +9,9 @@ public class Receita {
 	public float valor;
 	public Boolean recebido;
 	
+	public Pessoa pessoa;
+	public ContaBancaria conta;
+	
 	@Override
 	public String toString() {
 		return descricao + ";" + dataVencimento + ";" + valor + ";" + recebido;

@@ -8,6 +8,8 @@ public class Transacao {
 	public float valor;
 	public String operacao;
 	
+	public ContaBancaria conta;
+	
 	@Override
 	public String toString() {
 		return descricao + ";" + data + ";" + valor + ";" + operacao;
