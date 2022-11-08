@@ -1,13 +1,14 @@
 package br.edu.infnet.appfinance.model.domain;
 
 public class Pessoa {
+	private Integer id;
 	public String nome;
 	public String documento;
 	public int idade;
 	
 	@Override
 	public String toString() {
-		return nome + ";" + documento + ";" + idade;
+		return id + ";" + nome + ";" + documento + ";" + idade;
 	}
 
 	public String getNome() {
@@ -32,5 +33,13 @@ public class Pessoa {
 
 	public void setIdade(int idade) {
 		this.idade = idade;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

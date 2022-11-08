@@ -1,40 +1,48 @@
 
 package br.edu.infnet.appfinance.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import br.edu.infnet.appfinance.model.domain.Pessoa;
 
 @Controller
 public class PessoaController {
 	
-	@GetMapping(value = "/pessoa/lista")
-	public String telaLista(Model model) {
-		
-		Pessoa p1 = new Pessoa();		
-		p1.setNome("Pessoa da Silva Teste");
-		p1.setIdade(32);
-		p1.setDocumento("000.000.000-00");
-		
-		Pessoa p2 = new Pessoa();		
-		p2.setNome("Pessoa da Silva Teste");
-		p2.setIdade(32);
-		p2.setDocumento("000.000.000-00");
+	private static Map<Integer, Pessoa> mapa = new HashMap<Integer, Pessoa>();	
+	private static Integer id = 1;
 
-		
-
-		List<Pessoa> pessoas = new ArrayList<Pessoa>();
-		pessoas.add(p1);
-		pessoas.add(p2);
+	public static void incluir(Pessoa pessoa) {
+		pessoa.setId(id++);
+		mapa.put(pessoa.getId(), pessoa);		
+		System.out.println("> " + pessoa);
+	}
 	
-
-		model.addAttribute("listagem", pessoas);
-
+	public static void excluir(Integer id) {
+		mapa.remove(id);
+	}
+	
+	public static Collection<Pessoa> obterLista(){
+		return mapa.values();
+	}
+	
+	@GetMapping(value = "/pessoa/lista")
+	public String telaLista(Model model) {	
+		model.addAttribute("listagem", obterLista());
 		return "pessoa/lista";
 	}
+	
+	@GetMapping(value = "/pessoa/{id}/excluir")
+	public String exclusao(@PathVariable Integer id) {
+		excluir(id);	
+		return "redirect:/pessoa/lista";
+	}
+	
 }
+

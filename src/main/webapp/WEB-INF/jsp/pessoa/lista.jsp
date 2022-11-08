@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,30 @@
 </head>
 <body>
 	<div class="container mt-3">
-	  <h3>Pessoas</h3>
+	  <h3>Pessoas: ${listagem.size()}</h3>
+
+	  <table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>ID</th>
+	        <th>Nome</th>
+	        <th>Documento</th>
+	        <th>Idade</th>
+	        <th></th>
+	      </tr>
+	    </thead>
+	    <tbody>
+		  <c:forEach var="p" items="${listagem}">
+		      <tr>
+				<td>${p.id}</td>
+		        <td>${p.nome}</td>
+		        <td>${p.documento}</td>
+		        <td>${p.idade}</td>
+		        <td><a href="/pessoa/${p.id}/excluir">excluir</a></td>
+		      </tr>
+	      </c:forEach>
+	    </tbody>
+	  </table>
 	</div>
 </body>
 </html>
