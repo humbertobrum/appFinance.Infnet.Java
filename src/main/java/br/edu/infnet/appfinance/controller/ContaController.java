@@ -8,24 +8,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import br.edu.infnet.appfinance.model.service.PessoaService;
+import br.edu.infnet.appfinance.model.service.ContaService;
 
 @Controller
-public class PessoaController {
+public class ContaController {
 		
 	@Autowired
-	private PessoaService service;
+	private ContaService service;
 	
-	@GetMapping(value = "/pessoa/lista")
+	@GetMapping(value = "/conta/lista")
 	public String telaLista(Model model) {	
 		model.addAttribute("listagem", service.obterLista());
-		return "pessoa/lista";
+		return "conta/lista";
 	}
 	
-	@GetMapping(value = "/pessoa/{id}/excluir")
+	@GetMapping(value = "/conta/{id}/excluir")
 	public String exclusao(@PathVariable Integer id) {
 		service.excluir(id);	
-		return "redirect:/pessoa/lista";
+		return "redirect:/conta/lista";
 	}
 	
 }

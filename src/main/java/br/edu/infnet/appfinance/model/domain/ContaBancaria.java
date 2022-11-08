@@ -1,16 +1,35 @@
 package br.edu.infnet.appfinance.model.domain;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
+@Entity
+@Table(name = "tbConta")
 public class ContaBancaria {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
 	public String descricao;
 	public String agencia;
 	public String conta;
 	public float saldo;
 	
+	@Transient
 	private List<Receita> receitas;
+	
+	@Transient
 	private List<Despesa> despesas;
+	
+	@Transient
 	private List<Transacao> transacoes;
+	
 	
 	@Override
 	public String toString() {
@@ -71,5 +90,13 @@ public class ContaBancaria {
 
 	public void setTransacoes(List<Transacao> transacoes) {
 		this.transacoes = transacoes;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }
