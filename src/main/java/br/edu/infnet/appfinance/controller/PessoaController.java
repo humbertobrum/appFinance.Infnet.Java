@@ -13,7 +13,7 @@ import br.edu.infnet.appfinance.model.domain.Pessoa;
 @Controller
 public class PessoaController {
 	
-	@GetMapping(value = "/bebida/lista")
+	@GetMapping(value = "/pessoa/lista")
 	public String telaLista(Model model) {
 		
 		Pessoa p1 = new Pessoa();		
