@@ -5,34 +5,32 @@
 <head>
 	<meta charset="ISO-8859-1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<title>Cadastro de Conta Bancária</title>
+	<title>Cadastramento de Usuários</title>
 </head>
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 	<div class="container mt-3">
-	  <h3>Contas: ${listagem.size()}</h3>
+	  <h3>Usuário: ${listagem.size()}</h3>
 
-	  <h4><a href="/adicionarConta">Nova Conta</a></h4>
-	  
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
-	   		<th>ID</th>
-	        <th>Descrição</th>
-	        <th>Agência / Conta</th>
-	        <th>Saldo</th>
-		    <th></th>
+	        <th>ID</th>
+	        <th>Nome</th>
+	        <th>E-mail</th>
+	        <th>Senha</th>
+	        <th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
-		  <c:forEach var="item" items="${listagem}">
+		  <c:forEach var="u" items="${listagem}">
 		      <tr>
-				<td>${item.id}</td>
-		        <td>${item.descricao}</td>
-		        <td>${item.agencia} / ${item.conta}</td>
-		        <td>${item.saldo}</td>
-		        <td><a href="/conta/${item.id}/excluir">excluir</a></td>
+				<td>${u.id}</td>
+		        <td>${u.nome}</td>
+		        <td>${u.email}</td>
+		        <td>${u.senha}</td>
+		        <td><a href="/usuario/${u.id}/excluir">excluir</a></td>
 		      </tr>
 	      </c:forEach>
 	    </tbody>

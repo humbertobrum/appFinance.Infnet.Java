@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import br.edu.infnet.appfinance.model.domain.Pessoa;
+import br.edu.infnet.appfinance.model.domain.Usuario;
 import br.edu.infnet.appfinance.model.service.PessoaService;
 
 @Controller
@@ -21,6 +24,20 @@ public class PessoaController {
 		model.addAttribute("listagem", service.obterLista());
 		return "pessoa/lista";
 	}
+	
+	@GetMapping(value = "/adicionarPessoa")
+	public String telaCadastro() {
+		return "pessoa/cadastro";
+	}
+	
+	@PostMapping(value = "/pessoa/incluir")
+	public String incluir(Pessoa pessoa) {
+		
+		service.incluir(pessoa);
+		
+		return "redirect:/pessoa/lista";
+	}
+	
 	
 	@GetMapping(value = "/pessoa/{id}/excluir")
 	public String exclusao(@PathVariable Integer id) {

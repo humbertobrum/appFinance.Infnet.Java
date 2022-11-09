@@ -7,22 +7,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tbPessoa")
-public class Pessoa {
+@Table(name = "tbUser")
+public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	public String nome;
-	public String cpf;
-	public int idade;
+	public String email;
+	private String senha;
 	
 	@Override
 	public String toString() {
-		return id + ";" + nome + ";" + cpf + ";" + idade;
+		return id + ";" + nome + ";" + email;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -31,22 +31,22 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public int getIdade() {
-		return idade;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -54,6 +54,5 @@ public class Pessoa {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	
 }

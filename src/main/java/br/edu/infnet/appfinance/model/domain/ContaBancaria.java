@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -22,20 +24,29 @@ public class ContaBancaria {
 	public float saldo;
 	
 	@Transient
-	private List<Receita> receitas;
+	public List<Receita> receitas;
 	
 	@Transient
-	private List<Despesa> despesas;
+	public List<Despesa> despesas;
 	
 	@Transient
-	private List<Transacao> transacoes;
+	public List<Transacao> transacoes;
 	
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
 	
-	@Override
-	public String toString() {
-		return descricao + ";" + agencia + ";" + conta + ";" + saldo;
+	public Usuario getUsuario() {
+		return usuario;
 	}
+	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 
+	
 	public String getDescricao() {
 		return descricao;
 	}
@@ -59,37 +70,14 @@ public class ContaBancaria {
 	public void setConta(String conta) {
 		this.conta = conta;
 	}
-
+	
+	
 	public float getSaldo() {
 		return saldo;
 	}
 
 	public void setSaldo(float saldo) {
 		this.saldo = saldo;
-	}
-
-	public List<Receita> getReceitas() {
-		return receitas;
-	}
-
-	public void setReceitas(List<Receita> receitas) {
-		this.receitas = receitas;
-	}
-
-	public List<Despesa> getDespesas() {
-		return despesas;
-	}
-
-	public void setDespesas(List<Despesa> despesas) {
-		this.despesas = despesas;
-	}
-
-	public List<Transacao> getTransacoes() {
-		return transacoes;
-	}
-
-	public void setTransacoes(List<Transacao> transacoes) {
-		this.transacoes = transacoes;
 	}
 
 	public Integer getId() {
@@ -99,4 +87,11 @@ public class ContaBancaria {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+
+	@Override
+	public String toString() {
+		return descricao + ";" + agencia + ";" + conta + ";" + saldo;
+	}
+	
 }
